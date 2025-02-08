@@ -1,24 +1,93 @@
 <!DOCTYPE html>
-<html lang="en-GB">
-  <head>
-    <title>FiNiTe weeb site</title>
+<html>
+<head>
+	<title>FiNiTe weeb site</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		a{
-			display:block;
-			text-decoration:none;
-			padding:8px;
-			font-size:24px;
-			font-family:sans-serif;
-			max-width:700px;
-			text-align:center;
-			background:rgb(232,232,232);
-			font-weight:bold;
+	<link type="text/css" rel="stylesheet" href="/css/mainSiteStuff.css" />
+</head>
+<body>
+	<div id="darkModeToggle" class="background">
+		Toggle<br>dark mode
+	</div>
+	<header>
+		<div class="headerBG"></div>
+		<div class="headerBG right"></div>
+		<div class="imgHeaderContainer">
+			<div class="headerGradient"></div>
+			<!--why does html add whitespace between images when theres space in the source thats so fucking stupid-->
+			<img src="/images/bausha_close_call.jpg" style="height: 100%;" / ><img src="/images/finite_old_collabo.webp" style="height: 100%;background: linear-gradient(0deg,#0d0d1d,#353573);" / ><img src="/images/beat_bausher_off_rec.png" style="height: 100%;" / >
+			<div class="headerGradient flip"></div>
+		</div>
+	</header>
+	<div class="topSpacer"></div>
+	<div class="mainContainer">
+		<div class="blurGradient"></div>
+		<div class="background" style="width:100%; display:flex">
+			<div class="mainSideDecoration"></div>
+			<main>
+				<p>Hi! I usually go by FiNiTe/FiNiTe_weeb, I play Geometry Dash often, some modded Minecraft (GT:New Horizons/TerraFirmaGreg), sometimes Factorio, Kerbal Space Program, osu! and BeamNG.drive, I also made the GD list calculator, which you can find here: <a class="iamblue" href="https://list-calc.finite-weeb.xyz/">https://list-calc.finite-weeb.xyz/</a></p>
+				<p><a class="iamblue" href="/useful_gd_links.html">Useful GD Links</a></p>
+				<p><a class="iamblue" href="https://linktr.ee/finite_weeb">Linktree</a></p>
+			</main>
+			<div class="mainSideDecoration"></div>
+		</div>
+		<!--niflheim reference-->
+		<div class="blurGradient flip"></div>
+	</div>
+	<footer>
+		<div class="footerTop"></div>
+		<div class="flexItemContainer">
+			<a href="https://discord.gg/Ss4DKUB" target="_blank" class="footerItem">
+				<div class="smallImgContainer">
+					<img class="smallImg discordLogo">
+				</div>
+				<div class="footerItemLabelContainer">
+					<div class="footerItemLabel">My Discord server (dead af)</div>
+				</div>
+			</a>
+		</div>
+	</footer>
+	
+	<script type="text/javascript">
+		function toggleDark(){
+			let darkEnabled=document.body.classList.toggle("dark");
+			setCookie("darkmode",darkEnabled);
 		}
-	</style>
-  </head>
-  <body>
-    hewwo uwu sus amogus<br><br>
-	<a href="https://list-calc.finite-weeb.xyz/">GD LIST CALCULATOR: https://list-calc.finite-weeb.xyz/</a>
-  </body>
-</html> 
+		document.getElementById("darkModeToggle").addEventListener("click",toggleDark);
+		
+		function setCookie(name, val, secondsToLive=14515200){ //24 weeks is default lifetime
+			let nowTimeStamp=(new Date()).getTime();
+			let expiryTimeStamp=nowTimeStamp+secondsToLive*1000;
+			let expiryStr="expires="+(new Date(expiryTimeStamp)).toUTCString();
+			document.cookie=name+"="+val+";"+expiryStr+";path=/;samesite=strict";
+		}
+		function getCookie(name){
+			let splitCookies=document.cookie.split(";");
+			for(let i=0;i<splitCookies.length;i++){
+				let splitCookie=splitCookies[i];
+				//remove leading whitespace
+				while(splitCookie[0]==" "){
+					splitCookie=splitCookie.substr(1);
+				}
+				let lastIndex=splitCookie.length-1;
+				//remove trailing whitespace
+				while(splitCookie[lastIndex]==" "){
+					splitCookie=splitCookie.substr(0,lastIndex); //reminder: substr 2nd param is length, substring 2nd param is index
+				}
+				let cookieKeyVal=splitCookie.split("=");
+				if(cookieKeyVal[0]==name){
+					return cookieKeyVal[1];
+				}
+			}
+			return null;
+		}
+		function delCookie(name){
+			setCookie(name,"",0);
+		}
+		
+		if(getCookie("darkmode")=="true"){
+			toggleDark();
+		}
+	</script>
+</body>
+</html>
