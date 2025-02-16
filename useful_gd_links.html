@@ -120,6 +120,17 @@
 	</footer>
 	
 	<script type="text/javascript">
+		function searchBadLinks(){
+			let linkEls=document.getElementsByTagName("main")[0].getElementsByTagName("a");
+			let badLinks=[];
+			for(let linkEl of linkEls){
+				if(linkEl.href!=linkEl.innerText ){
+					badLinks.push(linkEl);
+				}
+			}
+			console.log(badLinks);
+			return badLinks;
+		}
 		function toggleDark(){
 			let darkEnabled=document.body.classList.toggle("dark");
 			setCookie("darkmode",darkEnabled);
